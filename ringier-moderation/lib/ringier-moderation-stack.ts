@@ -1,5 +1,4 @@
 import * as cdk from 'aws-cdk-lib';
-import * as custom_resources from 'aws-cdk-lib/custom-resources';
 import { Construct } from 'constructs';
 import * as s3 from 'aws-cdk-lib/aws-s3';
 import * as iam from 'aws-cdk-lib/aws-iam';
@@ -9,8 +8,6 @@ import { CfnChannel, CfnStreamKey, CfnRecordingConfiguration } from 'aws-cdk-lib
 import * as cloudfront from 'aws-cdk-lib/aws-cloudfront';
 import * as origins from 'aws-cdk-lib/aws-cloudfront-origins';
 import * as s3deploy from 'aws-cdk-lib/aws-s3-deployment';
-import * as fs from 'fs';
-import * as path from 'path';
 
 export class RingierModerationStack extends cdk.Stack {
 
@@ -22,8 +19,8 @@ export class RingierModerationStack extends cdk.Stack {
     // Get the stack ID dynamically
     const stackId = cdk.Fn.select(2, cdk.Fn.split('/', this.stackId));
 
-    // Define the bucket name using "ringier-ivs-thumbnail" + stack ID
-    const bucketName = `ringier-ivs-thumbnail-${stackId}`;
+    // Define the bucket name using "ringier-ivs" + stack ID
+    const bucketName = `ringier-ivs-${stackId}`;
 
     // Create an S3 bucket with the dynamic name
     const ivsBucket = new s3.Bucket(this, 'RingierIVSBucket', {
@@ -103,77 +100,16 @@ export class RingierModerationStack extends cdk.Stack {
     // Add an S3 event notification to the bucket to trigger the Lambda function
     ivsBucket.addEventNotification(s3.EventType.OBJECT_CREATED, new s3notifications.LambdaDestination(thumbnailHandler));
 
-
-    // Creating S3 Bucket for demo website 👇
-    // const s3hostingBucket = new s3.Bucket(this, "HostingBucket", {
-    //   bucketName : `ringier-ivs-static-${stackId}`,
-    //   objectOwnership: s3.ObjectOwnership.OBJECT_WRITER,
-    //   removalPolicy: cdk.RemovalPolicy.DESTROY,
-    //   autoDeleteObjects: true,
-    //   enforceSSL: true,
-    //   encryption: s3.BucketEncryption.S3_MANAGED,
-    //   blockPublicAccess: new s3.BlockPublicAccess({
-    //     blockPublicPolicy: true,
-    //     blockPublicAcls: true,
-    //     ignorePublicAcls: true,
-    //     restrictPublicBuckets: true
-    //     }),
-    // });
-
     const jsonconfig = {
       "playbackUrl" : `${ivsChannel.attrPlaybackUrl}`,
     };
 
-    const updateConfigFile = new custom_resources.AwsCustomResource(
-        this,
-        "WriteS3ConfigFile",
-        {
-          onCreate: {
-            service: "S3",
-            action: "putObject",
-            parameters: {
-            Body: JSON.stringify(jsonconfig),
-            Bucket: ivsBucket.bucketName,
-            Key: 'config.json',
-            },
-            physicalResourceId: custom_resources.PhysicalResourceId.of(Date.now().toString())
-        },                
-          onDelete: {
-            service: "S3",
-            action: "putObject",
-            parameters: {
-            Body: JSON.stringify(jsonconfig),
-            Bucket: ivsBucket.bucketName,
-            Key: 'config.json',
-            },
-            physicalResourceId: custom_resources.PhysicalResourceId.of(Date.now().toString())
-        },          
-        onUpdate: {
-            service: "S3",
-            action: "putObject",
-            parameters: {
-            Body: JSON.stringify(jsonconfig),
-            Bucket: ivsBucket.bucketName,
-            Key: 'config.json',
-            },
-            physicalResourceId: custom_resources.PhysicalResourceId.of(Date.now().toString())
-        },
-        policy: custom_resources.AwsCustomResourcePolicy.fromStatements([
-            new iam.PolicyStatement({
-            effect: iam.Effect.ALLOW,
-            actions: ["s3:PutObject"],
-            resources: [`${ivsBucket.bucketArn}/config.json`],
-            }),
-        ]),
-        }
-    );
-
-    //copying the source file to the S3 Bucket for demo website
-    new s3deploy.BucketDeployment(this, "DeployWebsite", {
-      sources: [s3deploy.Source.asset("website")],
+     //copying the source file to the S3 Bucket for demo website
+     new s3deploy.BucketDeployment(this, "DeployConfig", {
+      sources: [s3deploy.Source.data('config.json', JSON.stringify(jsonconfig)),s3deploy.Source.asset("website")],
       destinationBucket: ivsBucket,
-    });
-
+    });   
+    
     const s3origin = new origins.S3Origin(ivsBucket);
 
     const distributionDemo = new cloudfront.Distribution(this, "DistributionDemo", {
@@ -186,13 +122,13 @@ export class RingierModerationStack extends cdk.Stack {
         allowedMethods: cloudfront.AllowedMethods.ALLOW_GET_HEAD,
         viewerProtocolPolicy: cloudfront.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
       }
-    }); 
+    });  
 
     // Output the CloudFront distribution domain name (URL of the website)
     new cdk.CfnOutput(this, 'WebsiteUrl', {
       value: distributionDemo.domainName,
       description: 'The URL of the static website hosted on S3 and distributed by CloudFront',
-    });
+    }); 
 
     this.playbackUrl = new cdk.CfnOutput(this, 'PlaybackUrl', {
       value: ivsChannel.attrPlaybackUrl,
