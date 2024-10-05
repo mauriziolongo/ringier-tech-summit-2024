@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- # Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved. -->
+  <!-- # SPDX-License-Identifier: MIT-0 -->
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Amazon IVS Video.js Integration demo</title>
+    <link rel="stylesheet" href="style.css" />
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/video.js/7.17.0/video-js.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/video.js/7.17.0/video.min.js"></script>
+    <script src="https://player.live-video.net/1.18.0/amazon-ivs-videojs-tech.min.js"></script>
+    <script src="https://player.live-video.net/1.18.0/amazon-ivs-quality-plugin.min.js"></script>
+
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+
+    <div class="player-wrapper">
+      <video id="amazon-ivs-videojs" class="video-js vjs-fluid vjs-big-play-centered" controls autoplay playsinline></video>
+    </div>
+    <div class="message-right-top">
+            <!-- Product -->
+            <div id="product" class="hidden">
+              <div id="product__inner">
+                <div id="product__details">
+                  <h4 id="product__title"></h4>
+                  <p id="product__objects"></p>
+                  <p id="product__description"></p>
+                </div>
+              </div>
+            </div>
+    </div>
+
+    <div class="message-left-down">
+      <img src="" style="max-width:70%; height:auto;" id="myImage"></img>
+    </div>
+
+    <div class="message-right-down">
+
+      <textarea name="" id="myTextarea" cols="30" rows="10"></textarea>      
+    </div>    
+    
+  </body>
+</html>

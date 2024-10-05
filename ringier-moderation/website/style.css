@@ -1,0 +1,70 @@
+/* Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved. */
+/* SPDX-License-Identifier: MIT-0 */
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  font-size: 16px;  
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", sans-serif;
+  background: #F2F2F8;
+  display: grid;
+  place-items: center;
+}
+
+.player-wrapper {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 45%;
+  height: 45%;  
+  box-shadow: 0 6px 30px rgba(0, 0, 0, 0.3);
+  background: black;
+}
+
+.message-right-top {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 50%;
+  height: 50%;  
+  box-shadow: 0 6px 30px rgba(0, 0, 0, 0.3);
+  background: red;
+}
+
+.message-left-down {
+  display: flex;
+  justify-content: center;
+  align-items: center;  
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 50%;
+  height: 50%;  
+  box-shadow: 0 6px 30px rgba(0, 0, 0, 0.3);
+  background: black;
+}
+
+.message-right-down {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 50%;
+  height: 50%;  
+  box-shadow: 0 6px 30px rgba(0, 0, 0, 0.3);
+  background: blue;
+}
+
+textarea {
+  width: 100%;
+  min-height: 30rem;
+  font-family: "Lucida Console", Monaco, monospace;
+  font-size: 0.8rem;
+  line-height: 1.2;
+}
