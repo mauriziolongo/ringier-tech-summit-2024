@@ -7,7 +7,7 @@ git clone https://github.com/mauriziolongo/ringier-tech-summit-2024.git
 
 ## Access to AWS Console
 
-- https://catalog.us-east-1.prod.workshops.aws/join?access-code=<team-code>
+- https://catalog.us-east-1.prod.workshops.aws/join?access-code=XXXXXXXX
 - https://catalog.us-east-1.prod.workshops.aws/event/account-login
 
 ## Deploy Repo on your account using Cloud 9
@@ -26,6 +26,6 @@ git clone https://github.com/mauriziolongo/ringier-tech-summit-2024.git
 ## Optional for streaming
 - OBS Studio - [https://obsproject.com/](https://obsproject.com/)
 
-- **broadcast page: ** - Visit [https://stream.ivs.rocks/](https://stream.ivs.rocks/) and add your channel's `ingest endpoint` and `stream key` on the settings screen.
+- **broadcast page:** - Visit [https://stream.ivs.rocks/](https://stream.ivs.rocks/) and add your channel's `ingest endpoint` and `stream key` on the settings screen.
 
-- **streaming client** - Visit[https://debug.ivsdemos.com/](https://debug.ivsdemos.com/) and add your playbackUrl
+- **streaming client** - Visit[https://debug.ivsdemos.com/](https://debug.ivsdemos.com/) and add your `playbackUrl`
