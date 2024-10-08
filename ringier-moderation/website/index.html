@@ -22,26 +22,23 @@
     <div class="player-wrapper">
       <video id="amazon-ivs-videojs" class="video-js vjs-fluid vjs-big-play-centered" controls autoplay playsinline></video>
     </div>
+
     <div class="message-right-top">
-            <!-- Product -->
-            <div id="product" class="hidden">
-              <div id="product__inner">
-                <div id="product__details">
-                  <h4 id="product__title"></h4>
-                  <p id="product__objects"></p>
-                  <p id="product__description"></p>
-                </div>
-              </div>
-            </div>
+      <img src="./useme.png" alt="Image description">
     </div>
 
     <div class="message-left-down">
-      <img src="" style="max-width:70%; height:auto;" id="myImage"></img>
+      <div class="image-container">
+        <img src="" style="max-width:100%; height:auto;" id="myImage">
+        <div class="image-label">Thumbnail coming from Amazon IVS</div>
+      </div>
     </div>
 
     <div class="message-right-down">
-
-      <textarea name="" id="myTextarea" cols="30" rows="10"></textarea>      
+      <div class="textarea-container">
+        <label for="myTextarea">AWS Lambda function Response:</label>
+        <textarea name="" id="myTextarea" cols="30" rows="10"></textarea>
+      </div>  
     </div>    
     
   </body>

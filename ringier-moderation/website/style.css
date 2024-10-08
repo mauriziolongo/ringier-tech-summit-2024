@@ -25,17 +25,21 @@ body {
   width: 45%;
   height: 45%;  
   box-shadow: 0 6px 30px rgba(0, 0, 0, 0.3);
+  justify-content: center;
+  align-items: center;  
   background: black;
 }
 
 .message-right-top {
+  display: flex;               /* Enable flexbox */
+  justify-content: center;     /* Center horizontally */
+  align-items: center;         /* Center vertically */  
   position: absolute;
   left: 50%;
   top: 0;
   width: 50%;
   height: 50%;  
   box-shadow: 0 6px 30px rgba(0, 0, 0, 0.3);
-  background: red;
 }
 
 .message-left-down {
@@ -48,7 +52,6 @@ body {
   width: 50%;
   height: 50%;  
   box-shadow: 0 6px 30px rgba(0, 0, 0, 0.3);
-  background: black;
 }
 
 .message-right-down {
@@ -58,7 +61,16 @@ body {
   width: 50%;
   height: 50%;  
   box-shadow: 0 6px 30px rgba(0, 0, 0, 0.3);
-  background: blue;
+}
+
+.textarea-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.textarea-container label {
+  margin-bottom: 5px;
+  font-weight: bold;
 }
 
 textarea {
@@ -67,4 +79,28 @@ textarea {
   font-family: "Lucida Console", Monaco, monospace;
   font-size: 0.8rem;
   line-height: 1.2;
+}
+
+.image-container {
+  position: relative;
+  width: 70%;
+}
+
+.image-label {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 5px 10px;
+  font-size: 14px;
+  border-radius: 3px;
+}
+
+
+
+.message-right-top img {
+  width: auto;
+  height: 100%;
+  object-fit: contain;       
 }
