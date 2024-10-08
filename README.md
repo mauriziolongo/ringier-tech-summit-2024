@@ -47,7 +47,6 @@ aws ivs put-metadata   --channel-arn arn:aws:ivs:xxxxxxx   --metadata '{this is 
 ```
 https://www.shutterstock.com/image-vector/summer-3d-realistic-render-vector-600nw-2139770563.jpg
 https://images.contenthub.dev/kai2gu38cwfq/329eed37c8a7d4857fcf40c7615a4580/Isenau,%20Diablerets,%20VTT%20et%20E-Bike%20(c)%20Alain%20Rumpf%20(59)%20(1).jpg
-https://plus.unsplash.com/premium_photo-1664474619075-644dd191935f?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8aW1hZ2V8ZW58MHx8MHx8fDA%3D
 ```
 
 - Image moderation
