@@ -56,4 +56,4 @@ https://upload.wikimedia.org/wikipedia/commons/4/4f/SIG_Pro_by_Augustas_Didzgalv
 
 ## Demo UGC
 https://d2i6gtbxnlunvv.cloudfront.net/
-**user1** - **User12024!**
+Create a user
