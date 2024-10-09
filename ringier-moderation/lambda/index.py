@@ -138,7 +138,7 @@ def callBedrock(bucket, key):
     )
     try:
         response = runtime.invoke_model(
-            modelId="eu.anthropic.claude-3-haiku-20240307-v1:0",
+            modelId="anthropic.claude-3-haiku-20240307-v1:0",
             body=body
         )
     except:
